@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Git post-checkout hook 
+#
+# This hook is invoked when a git-checkout[1] or git-switch[1] is run after having updated the worktree. 
+# This hook cannot affect the outcome of git switch or git checkout.
+#
+# The hook is given three parameters: 
+# - the ref of the previous HEAD, 
+# - the ref of the new HEAD (which may or may not have changed), 
+# - a flag indicating whether the checkout was a branch checkout (changing branches, flag=1) 
+#   or a file checkout (retrieving a file from the index, flag=0). 
+#
+# 
+# It is also run after git-clone[1], unless the --no-checkout (-n) option is used. 
+# - The first parameter given to the hook is the null-ref, 
+# - the second the ref of the new HEAD 
+# - the flag is always 1. 
+# Likewise for git worktree add unless --no-checkout is used.
+
+# echo "post-checkout"
+prevHeadRef=$1
+newHeadRef=$2
+branchOrFileFlag=$3
+
+echo "prev: $prevHeadRef"
+echo "new: $newHeadRef"
+echo "flag: $branchOrFileFlag"
+
+# TODO test for null-ref
+# npm link
